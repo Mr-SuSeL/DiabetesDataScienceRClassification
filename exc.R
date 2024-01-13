@@ -46,6 +46,80 @@ head(classes)
 scaledAttr <- scale(attributes) %>% data.frame()
 head(scaledAttr)
 
+# dataset divided into train_set (70%) and test_set (30%)
+set.seed(123)
+sample <- sample(1:nrow(df), 0.7*nrow(df), replace = FALSE)
+sample[1:3]
+
+# Training - gym for dataset
+trainA <- scaledAttr[sample, ]
+testA <- scaledAttr[-sample, ]
+trainC <- classes[sample]
+testC <- classes[-sample]
+
+# decomposition classes in both datasets (is equal?)
+prop.table(table(df$Outcome)) # 65% vs. 35%
+prop.table(table(trainC)) # 65% vs. 35%
+prop.table(table(testC)) # 65% vs. 35%
+# Yes, the same
+
+# Model training and prediction
+# let's say k=3 for a while
+knnPrediction <- knn(trainA, testA, trainC, k = 3)
+
+# Accuracy
+nrow(testA)
+length(knnPrediction)
+# ouf-of-sample
+acc <- 1-mean(testC != knnPrediction) # 74%
+
+# check if tuning possible
+tuning <- sapply(1:10, function(i){
+  knnTuning <- knn(trainA, testA, trainC, k = i)
+  accT <- 1-mean(testC != knnTuning)
+})
+kBetter <- which.max(tuning)
+
+# k = 5 is better so... 
+knnPrediction <- knn(trainA, testA, trainC, k = kBetter) # k = 5
+acc <- 1-mean(testC != knnPrediction) 
+# accuracy is: 80,5%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
