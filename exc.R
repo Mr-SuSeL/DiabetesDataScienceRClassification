@@ -23,11 +23,13 @@ for(i in 1:ncol(df)){
 }
 
 skim(df)
+df$Outcome <- cukrzyca$Outcome
+head(df)
 
-
-
-
-
+# rounding data in columns to one decimal point
+df$Pregnancies <- round(df$Pregnancies, 1)
+df$SkinThickness <- round(df$SkinThickness, 1)
+df$Insulin <- round(df$Insulin, 1)
 
 
 
