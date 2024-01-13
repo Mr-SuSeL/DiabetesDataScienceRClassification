@@ -17,7 +17,7 @@ df <- cukrzyca[-9] # minus outcome column
 df[df == 0] <- NA
 skim(df)
 
- # All NA replace by mean value of each column
+# All NA replace by mean value of each column
 for(i in 1:ncol(df)){
   df[is.na(df[,i]), i] <- mean(df[,i], na.rm = TRUE)
 }
@@ -30,6 +30,26 @@ head(df)
 df$Pregnancies <- round(df$Pregnancies, 1)
 df$SkinThickness <- round(df$SkinThickness, 1)
 df$Insulin <- round(df$Insulin, 1)
+
+# --------------- end of clearing dataset --------------------------------------
+
+# distribution class in dataset
+table(df$Outcome)/nrow(df)
+
+attributes <- select(df, - Outcome)
+classes <- df$Outcome
+
+head(attributes)
+head(classes)
+
+# scaling attr
+scaledAttr <- scale(attributes) %>% data.frame()
+head(scaledAttr)
+
+
+
+
+
 
 
 

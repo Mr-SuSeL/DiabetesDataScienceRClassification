@@ -4,7 +4,7 @@ Data Science about to make classification in dataset diabetes in R language. Dia
 
 ### Dataset from kaggle
 
-[diabetes-data-set](https://www.kaggle.com/datasets/mathchi/diabetes-data-set%5Blink%5D){.uri}
+[diabetes-data-set](https://www.kaggle.com/datasets/mathchi/diabetes-data-set)
 
 ### Libraries
 
